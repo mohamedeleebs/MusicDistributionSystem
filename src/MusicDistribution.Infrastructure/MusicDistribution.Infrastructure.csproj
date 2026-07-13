@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\MusicDistribution.Application\MusicDistribution.Application.csproj" />
+    <ProjectReference Include="..\MusicDistribution.Persistence\MusicDistribution.Persistence.csproj" />
+    <ProjectReference Include="..\MusicDistribution.Domain\MusicDistribution.Domain.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

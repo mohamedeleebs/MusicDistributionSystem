@@ -2,6 +2,7 @@
 using MusicDistribution.Application.DTOs.Track;
 using MusicDistribution.Application.Interfaces;
 using MusicDistribution.Application.Interfaces.Repositories;
+using MusicDistribution.Application.Validators.Exceptions;
 using MusicDistribution.Domain.Entities;
 using MusicDistribution.Domain.Enums;
 using System;
@@ -25,11 +26,12 @@ namespace MusicDistribution.Application.Services
         {
             // Check Artist Exists
             if (!await _unitOfWork.Artists.ExistsAsync(dto.ArtistId))
-                throw new Exception("Artist not found.");
+                
+                   throw new BadRequestException("Artist not found.");
 
             // Check ISRC Uniqueness
             if (await _unitOfWork.Tracks.IsrcExistsAsync(dto.ISRC))
-                throw new Exception("ISRC already exists.");
+                throw new BadRequestException("ISRC already exists.");
 
             var track = new Track
             {
@@ -82,7 +84,7 @@ namespace MusicDistribution.Application.Services
             var track = await _unitOfWork.Tracks.GetDetailsAsync(id);
 
             if (track is null)
-                throw new Exception("Track not found.");
+                throw new NotFoundException("Track not found.");
 
             return new TrackDetailsDto
             {
@@ -112,7 +114,7 @@ namespace MusicDistribution.Application.Services
             var track = await _unitOfWork.Tracks.GetByIdAsync(id);
 
             if (track is null)
-                throw new Exception("Track not found.");
+                throw new NotFoundException("Track not found.");
 
             track.Status = dto.Status;
 
@@ -126,12 +128,13 @@ namespace MusicDistribution.Application.Services
             var track = await _unitOfWork.Tracks.GetByIdAsync(id);
 
             if (track is null)
-                throw new Exception("Track not found.");
+                throw new NotFoundException("Track not found.");
 
             var dsps = await _unitOfWork.DSPs.GetByIdsAsync(dto.DSPIds);
 
             if (dsps.Count != dto.DSPIds.Count)
-                throw new Exception("One or more DSPs do not exist.");
+                
+                throw new BadRequestException("One or more DSPs do not exist.");
 
             var distributions = new List<TrackDistribution>();
 

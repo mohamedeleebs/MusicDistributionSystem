@@ -5,9 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Validators\Artist\" />
-    <Folder Include="Validators\Exceptions\" />
-    <Folder Include="Validators\Track\" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
   </ItemGroup>
 
   <PropertyGroup>

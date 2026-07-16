@@ -37,5 +37,11 @@ namespace MusicDistribution.Persistence.Repositories
         {
             await _context.SaveChangesAsync();
         }
+        public async Task<bool> ExistsAsync(int trackId, int dspId)
+        {
+            return await _context.TrackDistributions
+                .AnyAsync(td => td.TrackId == trackId &&
+                                td.DSPId == dspId);
+        }
     }
 }

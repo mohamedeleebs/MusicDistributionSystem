@@ -14,6 +14,9 @@ namespace MusicDistribution.Application.Interfaces.Repositories
 
         Task<Track?> GetByIdAsync(int id);
 
+
+        Task<Track?> GetDetailsAsync(int id);        // AsNoTracking + Include
+
         Task<bool> ExistsAsync(int id);
 
         Task<bool> IsrcExistsAsync(string isrc);
@@ -23,6 +26,7 @@ namespace MusicDistribution.Application.Interfaces.Repositories
             string? genre,
             TrackStatus? status);
 
+        void Update(Track track);
         Task SaveChangesAsync();
     }
 }

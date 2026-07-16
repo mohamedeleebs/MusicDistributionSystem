@@ -13,6 +13,6 @@ namespace MusicDistribution.Application.Interfaces.Repositories
 
         Task<List<TrackDistribution>> GetByTrackIdAsync(int trackId);
 
-        Task SaveChangesAsync();
+        Task<bool> ExistsAsync(int trackId, int dspId);
     }
 }

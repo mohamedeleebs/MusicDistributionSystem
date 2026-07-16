@@ -13,7 +13,7 @@ namespace MusicDistribution.Application.Interfaces.Repositories
 
         Task<List<DSP>> GetByIdsAsync(List<int> ids);
 
-        Task<DSP?> GetByIdAsync(int id);
+        Task<IReadOnlyList<DSP>> GetByIdsAsync(IEnumerable<int> ids);
 
         Task SaveChangesAsync();
     }

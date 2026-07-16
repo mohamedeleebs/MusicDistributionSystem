@@ -10,8 +10,8 @@ namespace MusicDistribution.Application.Interfaces
 {
     public interface IArtistService
     {
-        Task<ApiResponse<ArtistDto>> CreateArtistAsync(CreateArtistDto dto);
+        Task<ArtistDto> CreateArtistAsync(CreateArtistDto dto);
 
-        Task<ApiResponse<IEnumerable<ArtistDto>>> GetAllArtistsAsync();
+        Task<IEnumerable<ArtistDto>> GetAllArtistsAsync();
     }
 }

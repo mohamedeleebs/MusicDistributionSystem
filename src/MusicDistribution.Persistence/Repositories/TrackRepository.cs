@@ -25,15 +25,22 @@ namespace MusicDistribution.Persistence.Repositories
             await _context.Tracks.AddAsync(track);
         }
 
+        
         public async Task<Track?> GetByIdAsync(int id)
         {
             return await _context.Tracks
+                .Include(t => t.TrackDistributions)
+                .FirstOrDefaultAsync(t => t.Id == id);
+        }
+        public async Task<Track?> GetDetailsAsync(int id)
+        {
+            return await _context.Tracks
+                .AsNoTracking()
                 .Include(t => t.Artist)
                 .Include(t => t.TrackDistributions)
                     .ThenInclude(td => td.DSP)
                 .FirstOrDefaultAsync(t => t.Id == id);
         }
-
         public async Task<bool> ExistsAsync(int id)
         {
             return await _context.Tracks
@@ -77,6 +84,10 @@ namespace MusicDistribution.Persistence.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+        public void Update(Track track)
+        {
+            _context.Tracks.Update(track);
         }
     }
 }

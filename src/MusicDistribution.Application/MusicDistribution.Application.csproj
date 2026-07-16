@@ -4,6 +4,12 @@
     <ProjectReference Include="..\MusicDistribution.Domain\MusicDistribution.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\Artist\" />
+    <Folder Include="Validators\Exceptions\" />
+    <Folder Include="Validators\Track\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

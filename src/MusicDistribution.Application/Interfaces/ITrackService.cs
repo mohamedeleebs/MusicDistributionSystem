@@ -1,5 +1,6 @@
 ﻿using MusicDistribution.Application.Common;
 using MusicDistribution.Application.DTOs.Track;
+using MusicDistribution.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +11,20 @@ namespace MusicDistribution.Application.Interfaces
 {
     public interface ITrackService
     {
-        Task<ApiResponse<TrackDto>> CreateTrackAsync(CreateTrackDto dto);
+        Task<TrackDto> CreateTrackAsync(CreateTrackDto dto);
 
-        Task<ApiResponse<IEnumerable<TrackDto>>> GetTracksAsync(
+        Task<IEnumerable<TrackDto>> GetTracksAsync(
             int? artistId,
             string? genre,
-            string? status);
+            TrackStatus? status);
 
-        Task<ApiResponse<TrackDetailsDto>> GetTrackDetailsAsync(int id);
+        Task<TrackDetailsDto> GetTrackDetailsAsync(int id);
 
-        Task<ApiResponse<bool>> UpdateStatusAsync(
+        Task UpdateTrackStatusAsync(
             int id,
             UpdateTrackStatusDto dto);
 
-        Task<ApiResponse<bool>> DistributeTrackAsync(
+        Task DistributeTrackAsync(
             int id,
             DistributeTrackDto dto);
     }

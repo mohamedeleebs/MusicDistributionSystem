@@ -33,7 +33,12 @@ namespace MusicDistribution.Persistence.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(d => d.Id == id);
         }
-
+        public async Task<IReadOnlyList<DSP>> GetByIdsAsync(IEnumerable<int> ids)
+        {
+            return await _context.DSPs
+                .Where(d => ids.Contains(d.Id))
+                .ToListAsync();
+        }
         public async Task<List<DSP>> GetByIdsAsync(List<int> ids)
         {
             return await _context.DSPs

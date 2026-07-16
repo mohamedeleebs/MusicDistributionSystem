@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MusicDistribution.Application\MusicDistribution.Application.csproj" />
     <ProjectReference Include="..\MusicDistribution.Domain\MusicDistribution.Domain.csproj" />
   </ItemGroup>
 

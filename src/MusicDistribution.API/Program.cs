@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.EntityFrameworkCore;
 using MusicDistribution.Persistence.Data;
+using MusicDistribution.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //db context service
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.Services.AddPersistence(builder.Configuration);
 
 var app = builder.Build();
 

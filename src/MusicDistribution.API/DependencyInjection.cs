@@ -14,6 +14,7 @@ namespace MusicDistribution.API
             services.AddScoped<ITrackService, TrackService>();
 
             services.AddValidatorsFromAssemblyContaining<CreateArtistValidator>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

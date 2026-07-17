@@ -12,6 +12,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
@@ -56,6 +57,7 @@ builder.Services
 builder.Services.AddPersistence(builder.Configuration);
 
 var app = builder.Build();
+await MusicDistribution.API.Seed.IdentitySeeder.SeedAdminUserAsync(app.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

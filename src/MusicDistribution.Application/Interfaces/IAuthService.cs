@@ -1,4 +1,5 @@
-﻿using MusicDistribution.Application.DTOs.Auth;
+﻿using Microsoft.AspNetCore.Mvc;
+using MusicDistribution.Application.DTOs.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace MusicDistribution.Application.Interfaces
 {
     public interface IAuthService
     {
-        Task<AuthResponseDto> LoginAsync(LoginDto dto);
+        Task<AuthResponseDto> LoginAsync([FromBody]LoginDto dto);
     }
 }

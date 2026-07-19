@@ -12,9 +12,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Add services to the container.
-builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
 // custom validators
@@ -23,6 +21,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateTrackValidator>();
 // application dependencies
 builder.Services.AddApplication();
 builder.Services.AddEndpointsApiExplorer();
+
+// Swagger (Swashbuckle)
+builder.Services.AddSwaggerGen();
 
 // Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
@@ -62,7 +63,8 @@ await MusicDistribution.API.Seed.IdentitySeeder.SeedAdminUserAsync(app.Services)
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

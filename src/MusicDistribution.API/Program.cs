@@ -53,6 +53,16 @@ builder.Services
                 Encoding.UTF8.GetBytes(jwt["Key"]!))
         };
     });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 // db context service
 builder.Services.AddPersistence(builder.Configuration);
@@ -66,7 +76,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowAngular");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
